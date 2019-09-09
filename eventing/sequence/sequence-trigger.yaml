@@ -1,0 +1,14 @@
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Trigger
+metadata:
+  name: sequence-trigger
+spec:
+  broker: kafka
+  filter:
+    sourceAndType:
+      type: dev.knative.foo.bar
+  subscriber:
+    ref:
+      apiVersion: messaging.knative.dev/v1alpha1
+      kind: Sequence
+      name: sequence

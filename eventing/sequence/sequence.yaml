@@ -1,0 +1,28 @@
+apiVersion: messaging.knative.dev/v1alpha1
+kind: Sequence
+metadata:
+  name: sequence
+spec:
+  channelTemplate:
+    apiVersion: messaging.knative.dev/v1alpha1
+    kind: KafkaChannel
+    spec:
+      numPartitions: 3
+      replicationFactor: 1
+  steps:
+    - ref:
+        apiVersion: serving.knative.dev/v1alpha1
+        kind: Service
+        name: first
+    - ref:
+        apiVersion: serving.knative.dev/v1alpha1
+        kind: Service
+        name: second
+    - ref:
+        apiVersion: serving.knative.dev/v1alpha1
+        kind: Service
+        name: third
+  reply:
+    kind: Broker
+    apiVersion: eventing.knative.dev/v1alpha1
+    name: kafka

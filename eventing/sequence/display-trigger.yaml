@@ -1,0 +1,14 @@
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Trigger
+metadata:
+  name: display-trigger
+spec:
+  broker: kafka
+  filter:
+    sourceAndType:
+      type: samples.http.mod3
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: event-display
