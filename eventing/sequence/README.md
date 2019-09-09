@@ -2,11 +2,15 @@
 kafka broker is deployed using [steps](https://github.com/qiujian16/knative-practice/blob/master/eventing/kafka-broker/README.md)
 
 ## Configure a squence eventing
-1. Create a set of squence services by service.yaml
-2. Create a sequence with sequence.yaml
-3. Create sequence trigger
+1. Create a set of squence [services](https://github.com/qiujian16/knative-practice/blob/master/eventing/sequence/services.yaml)
+2. Create a [sequence]https://github.com/qiujian16/knative-practice/blob/master/eventing/sequence/sequence.yaml
+3. Create [sequence trigger](https://github.com/qiujian16/knative-practice/blob/master/eventing/sequence/sequence-trigger.yaml)
 4. Create event-display serivce
-5. Create display trigger
+```
+cd $GOPATH/src/knative.dev/eventing-contribe/config/tools
+ko apply -f event-display
+```
+5. Create [display trigger](https://github.com/qiujian16/knative-practice/blob/master/eventing/sequence/display-trigger.yaml)
 
 ## Verify the setting
 1. Get kafka broker
