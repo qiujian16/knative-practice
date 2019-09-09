@@ -62,7 +62,7 @@ spec:
       replicationFactor: 1
 ```
 
-you shoule be able to see the broker setup as before
+you shoule be able to see the broker setup as ready
 
 ```
 NAME      READY   REASON   HOSTNAME                                   AGE
@@ -71,7 +71,7 @@ kafka     True             kafka-broker.default.svc.cluster.local     73m
 ```
 
 ## Verify that kafka broker works
-1. Create a message dumpber knativ service
+1. Create a message dumper knativ service
 ```
 apiVersion: serving.knative.dev/v1alpha1
 kind: Service
