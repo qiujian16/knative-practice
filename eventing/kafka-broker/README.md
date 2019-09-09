@@ -71,42 +71,8 @@ kafka     True             kafka-broker.default.svc.cluster.local     73m
 ```
 
 ## Verify that kafka broker works
-1. Create a message dumper knativ service
-```
-apiVersion: serving.knative.dev/v1alpha1
-kind: Service
-metadata:
-  name: my-service
-  namespace: default
-spec:
-  runLatest:
-    configuration:
-      revisionTemplate:
-        spec:
-          container:
-            # This corresponds to
-            # https://github.com/knative/eventing-contrib/blob/v0.2.1/cmd/message_dumper/dumper.go.
-            image: gcr.io/knative-releases/github.com/knative/eventing-sources/cmd/message_dumper@sha256:ab5391755f11a5821e7263686564b3c3cd5348522f5b31509963afb269ddcd63
-```
-
-2. Create a trigger
-```
-apiVersion: eventing.knative.dev/v1alpha1
-kind: Trigger
-metadata:
-  name: my-service-trigger
-spec:
-  broker: kafka
-  filter:
-    attributes:
-      type: dev.knative.foo.bar
-  subscriber:
-    ref:
-      apiVersion: serving.knative.dev/v1alpha1
-      kind: Service
-      name: my-service
-```
-
+1. Create a message dumper knativ [service](https://github.com/qiujian16/knative-practice/blob/master/eventing/kafka-broker/service.yaml)
+2. Create a [trigger](https://github.com/qiujian16/knative-practice/blob/master/eventing/kafka-broker/trigger.yaml)
 3. Get the broker ingress IP and send the request
 ```
 kubectl get svc kafka-broker
